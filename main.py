@@ -1,23 +1,16 @@
-print("1 - Add")
-print("2 - Subtract")
-print("3 - Multiply")
-print("4 - Divide")
-option = int(input("Choose an operation: "))
+from db import init_db
+from ui import launch_ui
 
-if(option in [1,2,3,4]):
-    num1 = int (input("Enter first number: "))
-    num2 = int (input("Enter second number: "))
+if __name__ == "_main_":
+    print("Initializing database...")
+    try:
+        init_db()
+        print("Database initialized.")
+    except Exception as e:
+        print(f"Error in init_db(): {e}")
 
-    if(option == 1):
-        result = num1 + num2
-    elif(option == 2):
-        result = num1 - num2
-    elif(option == 3):
-        result = num1 * num2
-    elif(option == 4):
-        result = num1 // num2
-
-else:
-    print("Invalid operation entered")
-
-print(" The result of the operation is {}".format(result))            
+    print("Launching UI...")
+    try:
+        launch_ui()
+    except Exception as e:
+        print(f"Error in launch_ui(): {e}")
